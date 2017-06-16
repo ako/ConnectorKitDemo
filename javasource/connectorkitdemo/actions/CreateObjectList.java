@@ -29,7 +29,9 @@ public class CreateObjectList extends CustomJavaAction<java.util.List<IMendixObj
 	private java.lang.String InitializationMicroflow;
 	private java.lang.Long ListSize;
 
-	public CreateObjectList(IContext context, java.lang.String ResultEntity, IMendixObject DefaultObject, java.lang.String InitializationMicroflow, java.lang.Long ListSize)
+	public CreateObjectList(IContext context, java.lang.String ResultEntity,
+							IMendixObject DefaultObject, java.lang.String InitializationMicroflow,
+							java.lang.Long ListSize)
 	{
 		super(context);
 		this.ResultEntity = ResultEntity;

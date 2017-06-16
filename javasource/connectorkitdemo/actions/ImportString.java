@@ -15,27 +15,29 @@ import com.mendix.systemwideinterfaces.MendixRuntimeException;
 import com.mendix.systemwideinterfaces.core.IContext;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
 import com.mendix.webui.CustomJavaAction;
-
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-public class ImportString extends CustomJavaAction<IMendixObject> {
-    private java.lang.String InputString;
-    private java.lang.String ImportMapping;
-    private java.lang.String ResultEntity;
+public class ImportString extends CustomJavaAction<IMendixObject>
+{
+	private java.lang.String InputString;
+	private java.lang.String ImportMapping;
+	private java.lang.String ResultEntity;
 
-    public ImportString(IContext context, java.lang.String InputString, java.lang.String ImportMapping, java.lang.String ResultEntity) {
-        super(context);
-        this.InputString = InputString;
-        this.ImportMapping = ImportMapping;
-        this.ResultEntity = ResultEntity;
-    }
+	public ImportString(IContext context, java.lang.String InputString, java.lang.String ImportMapping, java.lang.String ResultEntity)
+	{
+		super(context);
+		this.InputString = InputString;
+		this.ImportMapping = ImportMapping;
+		this.ResultEntity = ResultEntity;
+	}
 
-    @Override
-    public IMendixObject executeAction() throws Exception {
-        // BEGIN USER CODE
+	@Override
+	public IMendixObject executeAction() throws Exception
+	{
+		// BEGIN USER CODE
         try (InputStream is = new ByteArrayInputStream(this.InputString.getBytes(StandardCharsets.UTF_8))) {
             // import the string by executing the mapping
             List<IMendixObject> objects = Core.integration().importStream(getContext(), is,
@@ -46,18 +48,19 @@ public class ImportString extends CustomJavaAction<IMendixObject> {
             logger.error(e);
             throw new MendixRuntimeException(String.format("Failed to import json string: %s", e.getMessage()));
         }
-        // END USER CODE
-    }
+		// END USER CODE
+	}
 
-    /**
-     * Returns a string representation of this action
-     */
-    @Override
-    public java.lang.String toString() {
-        return "ImportString";
-    }
+	/**
+	 * Returns a string representation of this action
+	 */
+	@Override
+	public java.lang.String toString()
+	{
+		return "ImportString";
+	}
 
-    // BEGIN EXTRA CODE
+	// BEGIN EXTRA CODE
     private static final ILogNode logger = Core.getLogger(ImportString.class.getName());
-    // END EXTRA CODE
+	// END EXTRA CODE
 }

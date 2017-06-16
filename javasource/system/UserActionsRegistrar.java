@@ -17,6 +17,7 @@ public class UserActionsRegistrar
     registrator.registerUserAction(appcloudservices.actions.StartSignOnServlet.class);
     registrator.registerUserAction(connectorkitdemo.actions.CreateObjectList.class);
     registrator.registerUserAction(connectorkitdemo.actions.ImportString.class);
+    registrator.registerUserAction(connectorkitdemo.actions.JoinObjectsInList.class);
     registrator.registerUserAction(system.actions.VerifyPassword.class);
   }
 }
