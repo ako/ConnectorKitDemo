@@ -7,36 +7,32 @@
 // Other code you write will be lost the next time you deploy the project.
 // Special characters, e.g., é, ö, à, etc. are supported in comments.
 
-package connectorkitdemo.actions;
+package unittesting.actions;
 
+import unittesting.TestManager;
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
-import java.util.ArrayList;
-import java.util.List;
+import com.mendix.webui.CustomJavaAction;
 
-public class JoinObjectsInList extends CustomJavaAction<java.util.List<IMendixObject>>
+public class RunUnitTest extends CustomJavaAction<java.lang.Boolean>
 {
-	private java.lang.String Entity;
-	private IMendixObject Object1;
-	private IMendixObject Object2;
+	private IMendixObject __unitTest;
+	private unittesting.proxies.UnitTest unitTest;
 
-	public JoinObjectsInList(IContext context, java.lang.String Entity, IMendixObject Object1, IMendixObject Object2)
+	public RunUnitTest(IContext context, IMendixObject unitTest)
 	{
 		super(context);
-		this.Entity = Entity;
-		this.Object1 = Object1;
-		this.Object2 = Object2;
+		this.__unitTest = unitTest;
 	}
 
 	@Override
-	public java.util.List<IMendixObject> executeAction() throws Exception
+	public java.lang.Boolean executeAction() throws Exception
 	{
+		this.unitTest = __unitTest == null ? null : unittesting.proxies.UnitTest.initialize(getContext(), __unitTest);
+
 		// BEGIN USER CODE
-		List<IMendixObject> resultList = new ArrayList<IMendixObject>();
-		resultList.add(Object1);
-		resultList.add(Object2);
-		return resultList;
+		TestManager.instance().runTest(getContext(), unitTest);
+		return true;
 		// END USER CODE
 	}
 
@@ -46,7 +42,7 @@ public class JoinObjectsInList extends CustomJavaAction<java.util.List<IMendixOb
 	@Override
 	public java.lang.String toString()
 	{
-		return "JoinObjectsInList";
+		return "RunUnitTest";
 	}
 
 	// BEGIN EXTRA CODE

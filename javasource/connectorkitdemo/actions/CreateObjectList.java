@@ -29,9 +29,7 @@ public class CreateObjectList extends CustomJavaAction<java.util.List<IMendixObj
 	private java.lang.String InitializationMicroflow;
 	private java.lang.Long ListSize;
 
-	public CreateObjectList(IContext context, java.lang.String ResultEntity,
-							IMendixObject DefaultObject, java.lang.String InitializationMicroflow,
-							java.lang.Long ListSize)
+	public CreateObjectList(IContext context, java.lang.String ResultEntity, IMendixObject DefaultObject, java.lang.String InitializationMicroflow, java.lang.Long ListSize)
 	{
 		super(context);
 		this.ResultEntity = ResultEntity;
@@ -48,7 +46,7 @@ public class CreateObjectList extends CustomJavaAction<java.util.List<IMendixObj
                 this.ListSize, this.ResultEntity, this.InitializationMicroflow));
         // Create a list to return with all the instantiated objects
         ArrayList<IMendixObject> resultList = new ArrayList<IMendixObject>();
-        for (int i = 0; i <= this.ListSize; i = i + 1) {
+        for (int i = 0; i < this.ListSize; i = i + 1) {
             // create new object of type resultentity
             IMendixObject newObject = Core.instantiate(getContext(), this.ResultEntity);
             if (this.DefaultObject != null) {

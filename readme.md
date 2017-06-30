@@ -22,7 +22,7 @@ i will explain some of the more advanced features.
 
  ![Connectorkit demo toolbox][15]
 
-## Creating generic actions using parameter type
+## Creating generic actions using Type Parameter
 
 Lets start with *Type Parameters*. Mendix 6.6 introduced a new type parameters tab in the java action definition 
 dialog, as illustrated below.  You can use a type parameter if you want to ensure that certain parameters of your 
@@ -121,10 +121,68 @@ it can be handled using a user specified microflow.
   
 ## Using import and export mappings
 
+Finally an example how you can use mappings in your java actions. In this example we'll create an action to 
+import a string using an import mapping. This is not particulairly useful, seeing there is a default action
+in your toolbox already that provides this functionality, *Import with mapping*. However, as an example it should do.
+
+First a screenshot of what we are trying to achieve: an action to import JSON strings. The action requires the user to provide
+a string with the JSON to import, select an import mapping, and define the entity of the result.
+Finally a name needs to be provided for the result of the import mapping.
+
+ ![Example import string use][19]
+
+The action is defined as follows:
+* InputString - A string parameter containing the JSON to be imported.
+* ImportMapping - The name of the mapping to be used for importing the JSON.
+* ResultEntity - Type of the object that will be the result of the import.
+* Return type - An object of the type specified with ResultEntity.
+
  ![Import String with mapping java action parameters][16]
  
+The java implementation works as follows:
+1. Create in InputStream from the the JSON input so it can be read by the import mapping.
+2. Use Core.integration().importStream() to import the JSON with the specified mapping.
+3. Return the first object imported.
+ 
+ ![Import String java action][20]
+ 
 ## Some development tips
-## Java dependency management using ivy
+
+
+### Unit testing
+
+When developing connector modules you can use the unit test module to ensure everything
+is working as expected after every change.
+
+If you want to publish your module with custom microflow actions to the AppStore for easy reuse
+it's best to have a module containing only the reusable part. Add another project module with 
+all the test microflows, and anything else you need while developing your application.
+
+The screenshot below illustrates this:
+* The *ConnectorKitDemo* module only contains the actions you want to publish to the appstore. You 
+can do this by selecting *export module package...* from the context menu.
+* The *ConnectorKitDemoTests* module contains all functionality you need while developing the 
+reusable module: a small domain model with some sample data and some test pages. It also contains 
+one unit test microflow that will be called by the unit test module: *Test_InitProduct*.
+
+ ![Mendix Connector kit module project with tests][21]
+ 
+### Managing libraries
+
+When you export the module package for publishing in the AppStore you only want to include the relevant
+java libraries. The easiest way to manage this is to use a build tool to specify and download the relevant 
+dependencies.
+
+The [ConnectorKitDemo][22] project on Github contains 2 examples how to do this:
+* Ivy - [Apache Ivy][23] is a java library specifically created for managing dependencies. Ivy is small enough that you can
+include it in your Mendix project. You can create two
+configurations in an ivy.xml configuration file. One to specify all jars needed to run the project and execute
+the tests. One to just specify the libraries that should be included when publishing the module for reuse in the AppStore.
+The demo project contains two configurations called *default* and *export* in the ivy.xml configuration file.
+* Gradle - [Gradle][25] is a full fledged build tool where you can define tasks to build your project. The example
+in the demo project only uses gradle to manage the dependencies. Again it defines two build configurations, one requiring all
+dependencies, one just the libraries needed for exporting the module (in this case just a library to call Slack). 
+
 
  [1]: docs/images/slack-rekogition-bot-architecture.png
  [2]: docs/images/slack-rekogition-bot-toolkit.png
@@ -144,4 +202,11 @@ it can be handled using a user specified microflow.
  [17]: https://github.com/ako/MqttClient
  [18]: https://appstore.home.mendix.com/link/app/3066/Mendix/MQTT-Client
  [16]: docs/images/import_string_action_pars.png
- 
+ [19]: docs/images/example_import_string_use.png
+ [20]: docs/images/import_string_java.png
+ [21]: docs/images/project_test.png
+ [22]: https://github.com/ako/ConnectorKitDemo
+ [23]: http://ant.apache.org/ivy/
+ [24]: https://github.com/ako/ConnectorKitDemo/blob/master/ivy.xml
+ [25]: https://gradle.org/
+ [26]: https://github.com/ako/ConnectorKitDemo/blob/master/build.gradle

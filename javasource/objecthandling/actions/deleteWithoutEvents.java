@@ -7,36 +7,34 @@
 // Other code you write will be lost the next time you deploy the project.
 // Special characters, e.g., é, ö, à, etc. are supported in comments.
 
-package connectorkitdemo.actions;
+package objecthandling.actions;
 
+import com.mendix.core.Core;
 import com.mendix.systemwideinterfaces.core.IContext;
 import com.mendix.webui.CustomJavaAction;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
-import java.util.ArrayList;
-import java.util.List;
 
-public class JoinObjectsInList extends CustomJavaAction<java.util.List<IMendixObject>>
+/**
+ * Deletes the given objects from the database and server cache (synchronously) without events. Thre  current context is used to execute this action.
+ */
+public class deleteWithoutEvents extends CustomJavaAction<java.lang.Boolean>
 {
-	private java.lang.String Entity;
-	private IMendixObject Object1;
-	private IMendixObject Object2;
+	private java.util.List<IMendixObject> objectList;
+	private java.lang.Boolean useDeleteBehavior;
 
-	public JoinObjectsInList(IContext context, java.lang.String Entity, IMendixObject Object1, IMendixObject Object2)
+	public deleteWithoutEvents(IContext context, java.util.List<IMendixObject> objectList, java.lang.Boolean useDeleteBehavior)
 	{
 		super(context);
-		this.Entity = Entity;
-		this.Object1 = Object1;
-		this.Object2 = Object2;
+		this.objectList = objectList;
+		this.useDeleteBehavior = useDeleteBehavior;
 	}
 
 	@Override
-	public java.util.List<IMendixObject> executeAction() throws Exception
+	public java.lang.Boolean executeAction() throws Exception
 	{
 		// BEGIN USER CODE
-		List<IMendixObject> resultList = new ArrayList<IMendixObject>();
-		resultList.add(Object1);
-		resultList.add(Object2);
-		return resultList;
+		Core.deleteWithoutEvents(this.getContext(), objectList, useDeleteBehavior);
+		return true;
 		// END USER CODE
 	}
 
@@ -46,7 +44,7 @@ public class JoinObjectsInList extends CustomJavaAction<java.util.List<IMendixOb
 	@Override
 	public java.lang.String toString()
 	{
-		return "JoinObjectsInList";
+		return "deleteWithoutEvents";
 	}
 
 	// BEGIN EXTRA CODE

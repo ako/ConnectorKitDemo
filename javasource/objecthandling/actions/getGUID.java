@@ -7,36 +7,31 @@
 // Other code you write will be lost the next time you deploy the project.
 // Special characters, e.g., é, ö, à, etc. are supported in comments.
 
-package connectorkitdemo.actions;
+package objecthandling.actions;
 
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
-import java.util.ArrayList;
-import java.util.List;
+import com.mendix.webui.CustomJavaAction;
+import objecthandling.ORM;
 
-public class JoinObjectsInList extends CustomJavaAction<java.util.List<IMendixObject>>
+/**
+ * returns the Global Unique Identifier (GUID, or id) of an object.
+ */
+public class getGUID extends CustomJavaAction<java.lang.Long>
 {
-	private java.lang.String Entity;
-	private IMendixObject Object1;
-	private IMendixObject Object2;
+	private IMendixObject item;
 
-	public JoinObjectsInList(IContext context, java.lang.String Entity, IMendixObject Object1, IMendixObject Object2)
+	public getGUID(IContext context, IMendixObject item)
 	{
 		super(context);
-		this.Entity = Entity;
-		this.Object1 = Object1;
-		this.Object2 = Object2;
+		this.item = item;
 	}
 
 	@Override
-	public java.util.List<IMendixObject> executeAction() throws Exception
+	public java.lang.Long executeAction() throws Exception
 	{
 		// BEGIN USER CODE
-		List<IMendixObject> resultList = new ArrayList<IMendixObject>();
-		resultList.add(Object1);
-		resultList.add(Object2);
-		return resultList;
+		return ORM.getGUID(item);
 		// END USER CODE
 	}
 
@@ -46,7 +41,7 @@ public class JoinObjectsInList extends CustomJavaAction<java.util.List<IMendixOb
 	@Override
 	public java.lang.String toString()
 	{
-		return "JoinObjectsInList";
+		return "getGUID";
 	}
 
 	// BEGIN EXTRA CODE
