@@ -178,9 +178,9 @@ The [ConnectorKitDemo][22] project on Github contains 2 examples how to do this:
 include it in your Mendix project. You can create two
 configurations in an ivy.xml configuration file. One to specify all jars needed to run the project and execute
 the tests. One to just specify the libraries that should be included when publishing the module for reuse in the AppStore.
-The demo project contains two configurations called *default* and *export* in the ivy.xml configuration file.
+The demo project contains two configurations called *default* and *export* in the [ivy.xml][24] configuration file.
 * Gradle - [Gradle][25] is a full fledged build tool where you can define tasks to build your project. The example
-in the demo project only uses gradle to manage the dependencies. Again it defines two build configurations, one requiring all
+in the demo project only uses gradle to manage the dependencies. Again it defines [two build configurations][26], one requiring all
 dependencies, one just the libraries needed for exporting the module (in this case just a library to call Slack). 
 
 
