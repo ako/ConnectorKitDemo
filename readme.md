@@ -1,9 +1,16 @@
 ---
+title: "Building Microflow actions using the Mendix Connector Kit"
+space: "Mendix 7 How-to's"
+category: "Extendability"
+parent: 
+description: "Create custom Microflow actions using advanced Connector Kit options"
+tags: ["Java","Connector Kit","Microflow action","Parameter type"]
+toc-level: 1
 output:
   word_document: default
   html_document: default
 ---
-# Building Microflow actions using the Mendix Connector Kit
+## 1 Introduction
 
 Last year with Mendix 6.6 we introduced [the Connector Kit][4]. The goal of this
 enhancement is to enable Java developers to easily add powerful and robust new
@@ -34,7 +41,7 @@ using the Connector Kit.
 
  ![Connectorkit demo toolbox][15]
 
-## Creating generic actions using Type Parameter
+## 2 Creating generic actions using Type Parameter
 
 Lets start with *Type Parameters*. Mendix 6.6 introduced a new type parameters 
 tab in the java action definition dialog, as illustrated below.  You can use a 
@@ -82,7 +89,7 @@ list, as illustrated by the following example.
  
 As you can see, *type parameters* enable you to create typesafe generic actions.
 
-## Executing microflows
+## 3 Executing microflows
 
 The following example illustrates how you can use microflow parameters. The
 microflow below creates a list of Product objects and calls a microflow for
@@ -145,7 +152,7 @@ the [MQTT connector][18] ([GitHub MQTT Connector project][17]) will execute a
 Microflow when receiving an IoT sensor event so it can be handled using a user
 specified Microflow.
   
-## Using import and export mappings
+## 4 Using import and export mappings
 
 Finally an example how you can use Mappings in your Java actions. In this
 example we'll create an action to import a string using an import mapping. This
@@ -177,10 +184,10 @@ The actions is implemented in java as follows:
  
  ![Import String java action][20]
  
-## Some development tips
+## 5 Some development tips
 
 
-### Unit testing
+### 5.1 Unit testing
 
 When developing connector modules you can use the unit test module to test the actions
 you are implementing.
@@ -202,7 +209,7 @@ the unit test module: *Test_InitProduct*.
 
  ![Mendix Connector kit module project with tests][21]
  
-### Managing libraries
+### 5.2 Managing libraries
 
 When you export the module package for publishing in the AppStore you only want
 to include the relevant Java libraries. The easiest way to manage this is to use
