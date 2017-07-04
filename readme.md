@@ -1,15 +1,5 @@
----
-title: "Building Microflow actions using the Mendix Connector Kit"
-space: "Mendix 7 How-to's"
-category: "Extendability"
-parent: 
-description: "Create custom Microflow actions using advanced Connector Kit options"
-tags: ["Java","Connector Kit","Microflow action","Parameter type"]
-toc-level: 1
-output:
-  word_document: default
-  html_document: default
----
+# Building Microflow actions using the Mendix Connector Kit
+
 ## 1 Introduction
 
 Last year with Mendix 6.6 we introduced [the Connector Kit][4]. The goal of this
