@@ -18,6 +18,7 @@ public class UserActionsRegistrar
     registrator.registerUserAction(connectorkitdemo.actions.CreateObjectList.class);
     registrator.registerUserAction(connectorkitdemo.actions.ImportString.class);
     registrator.registerUserAction(connectorkitdemo.actions.JoinObjectsInList.class);
+    registrator.registerUserAction(connectorkitdemo.actions.QueryOQL.class);
     registrator.registerUserAction(objecthandling.actions.clone.class);
     registrator.registerUserAction(objecthandling.actions.commitInSeparateDatabaseTransaction.class);
     registrator.registerUserAction(objecthandling.actions.copyAttributes.class);

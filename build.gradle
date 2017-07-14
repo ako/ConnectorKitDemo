@@ -7,7 +7,9 @@ apply plugin: 'java'
 
 configurations {
     export {}
-    compile { extendsFrom export }
+    compile { extendsFrom export
+    destinationDir = file("$rootDir/deployment/run/bin")
+    }
 }
 dependencies {
     // public mendix runtime jars
@@ -27,13 +29,24 @@ dependencies {
     testRuntime 'commons-lang:commons-lang:2.5'
     testRuntime 'org.apache.ws.commons.axiom:axiom-api:1.2.19'
     // export slack client sdk jars for upload to AppStore
-    export 'com.ullink.slack:simpleslackapi:1.0.0'
+    //export 'com.ullink.slack:simpleslackapi:1.0.0'
 }
 
 repositories {
     mavenCentral()
     flatDir {
-        dirs '/c://Program Files/Mendix/7.3.0/runtime/bundles'
+        dirs '/c://Program Files/Mendix/7.5.0/runtime/bundles'
+    }
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['javasource']
+        }
+        resources {
+            srcDirs = ['resources']
+        }
     }
 }
 

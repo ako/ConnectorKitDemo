@@ -2,7 +2,7 @@
 //
 // WARNING: Code you write here will be lost the next time you deploy the project.
 
-package connectorkitdemo.proxies;
+package connectorkitdemotests.proxies;
 
 public class Product
 {
@@ -13,7 +13,7 @@ public class Product
 	/**
 	 * Internal name of this entity
 	 */
-	public static final java.lang.String entityName = "ConnectorKitDemo.Product";
+	public static final java.lang.String entityName = "ConnectorKitDemoTests.Product";
 
 	/**
 	 * Enum describing members of this entity
@@ -40,15 +40,15 @@ public class Product
 
 	public Product(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		this(context, com.mendix.core.Core.instantiate(context, "ConnectorKitDemo.Product"));
+		this(context, com.mendix.core.Core.instantiate(context, "ConnectorKitDemoTests.Product"));
 	}
 
 	protected Product(com.mendix.systemwideinterfaces.core.IContext context, com.mendix.systemwideinterfaces.core.IMendixObject productMendixObject)
 	{
 		if (productMendixObject == null)
 			throw new java.lang.IllegalArgumentException("The given object cannot be null.");
-		if (!com.mendix.core.Core.isSubClassOf("ConnectorKitDemo.Product", productMendixObject.getType()))
-			throw new java.lang.IllegalArgumentException("The given object is not a ConnectorKitDemo.Product");
+		if (!com.mendix.core.Core.isSubClassOf("ConnectorKitDemoTests.Product", productMendixObject.getType()))
+			throw new java.lang.IllegalArgumentException("The given object is not a ConnectorKitDemoTests.Product");
 
 		this.productMendixObject = productMendixObject;
 		this.context = context;
@@ -58,31 +58,31 @@ public class Product
 	 * @deprecated Use 'Product.load(IContext, IMendixIdentifier)' instead.
 	 */
 	@Deprecated
-	public static connectorkitdemo.proxies.Product initialize(com.mendix.systemwideinterfaces.core.IContext context, com.mendix.systemwideinterfaces.core.IMendixIdentifier mendixIdentifier) throws com.mendix.core.CoreException
+	public static connectorkitdemotests.proxies.Product initialize(com.mendix.systemwideinterfaces.core.IContext context, com.mendix.systemwideinterfaces.core.IMendixIdentifier mendixIdentifier) throws com.mendix.core.CoreException
 	{
-		return connectorkitdemo.proxies.Product.load(context, mendixIdentifier);
+		return connectorkitdemotests.proxies.Product.load(context, mendixIdentifier);
 	}
 
 	/**
 	 * Initialize a proxy using context (recommended). This context will be used for security checking when the get- and set-methods without context parameters are called.
 	 * The get- and set-methods with context parameter should be used when for instance sudo access is necessary (IContext.createSudoClone() can be used to obtain sudo access).
 	 */
-	public static connectorkitdemo.proxies.Product initialize(com.mendix.systemwideinterfaces.core.IContext context, com.mendix.systemwideinterfaces.core.IMendixObject mendixObject)
+	public static connectorkitdemotests.proxies.Product initialize(com.mendix.systemwideinterfaces.core.IContext context, com.mendix.systemwideinterfaces.core.IMendixObject mendixObject)
 	{
-		return new connectorkitdemo.proxies.Product(context, mendixObject);
+		return new connectorkitdemotests.proxies.Product(context, mendixObject);
 	}
 
-	public static connectorkitdemo.proxies.Product load(com.mendix.systemwideinterfaces.core.IContext context, com.mendix.systemwideinterfaces.core.IMendixIdentifier mendixIdentifier) throws com.mendix.core.CoreException
+	public static connectorkitdemotests.proxies.Product load(com.mendix.systemwideinterfaces.core.IContext context, com.mendix.systemwideinterfaces.core.IMendixIdentifier mendixIdentifier) throws com.mendix.core.CoreException
 	{
 		com.mendix.systemwideinterfaces.core.IMendixObject mendixObject = com.mendix.core.Core.retrieveId(context, mendixIdentifier);
-		return connectorkitdemo.proxies.Product.initialize(context, mendixObject);
+		return connectorkitdemotests.proxies.Product.initialize(context, mendixObject);
 	}
 
-	public static java.util.List<connectorkitdemo.proxies.Product> load(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String xpathConstraint) throws com.mendix.core.CoreException
+	public static java.util.List<connectorkitdemotests.proxies.Product> load(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String xpathConstraint) throws com.mendix.core.CoreException
 	{
-		java.util.List<connectorkitdemo.proxies.Product> result = new java.util.ArrayList<connectorkitdemo.proxies.Product>();
-		for (com.mendix.systemwideinterfaces.core.IMendixObject obj : com.mendix.core.Core.retrieveXPathQuery(context, "//ConnectorKitDemo.Product" + xpathConstraint))
-			result.add(connectorkitdemo.proxies.Product.initialize(context, obj));
+		java.util.List<connectorkitdemotests.proxies.Product> result = new java.util.ArrayList<connectorkitdemotests.proxies.Product>();
+		for (com.mendix.systemwideinterfaces.core.IMendixObject obj : com.mendix.core.Core.retrieveXPathQuery(context, "//ConnectorKitDemoTests.Product" + xpathConstraint))
+			result.add(connectorkitdemotests.proxies.Product.initialize(context, obj));
 		return result;
 	}
 
@@ -249,7 +249,7 @@ public class Product
 
 		if (obj != null && getClass().equals(obj.getClass()))
 		{
-			final connectorkitdemo.proxies.Product that = (connectorkitdemo.proxies.Product) obj;
+			final connectorkitdemotests.proxies.Product that = (connectorkitdemotests.proxies.Product) obj;
 			return getMendixObject().equals(that.getMendixObject());
 		}
 		return false;
@@ -266,7 +266,7 @@ public class Product
 	 */
 	public static java.lang.String getType()
 	{
-		return "ConnectorKitDemo.Product";
+		return "ConnectorKitDemoTests.Product";
 	}
 
 	/**
